@@ -2,7 +2,7 @@ import { Inter, Outfit } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-const outfit = Outfit({ subsets: ["latin"], weights: [400, 600] });
+const outfit = Outfit({ subsets: ["latin"], weights: [400, 600, 700] });
 
 export const metadata = {
   title: "Story Bridge",

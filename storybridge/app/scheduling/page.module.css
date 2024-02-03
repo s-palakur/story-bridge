@@ -6,3 +6,15 @@
     font-weight: 700;
     line-height: normal;
 }
+.heading {
+    color: #000;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.main {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+}
