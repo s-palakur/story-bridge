@@ -1,0 +1,58 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F9FEFA; 
+    margin-top: 1rem;
+  }
+  
+  .logoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+  }
+  
+  .logo {
+    width: 28rem; 
+    height: auto; 
+    flex-shrink: 0;
+  }
+  
+  .description {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 1.7rem; 
+  }
+
+  .text {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 1.2rem; 
+  }
+  
+  .button {
+    background-color: white;
+    margin-top: 2rem;
+    color: black;
+    width: 10rem;
+height: 3rem;
+flex-shrink: 0;
+border-radius: 0.7rem;
+box-shadow: 2.033px 2.033px 10.063px 0px rgba(0, 0, 0, 0.1);
+
+
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0; /* Add a subtle hover effect */
+  }
