@@ -7,4 +7,16 @@
     height: 150px;
     padding: 60px;
     align-items: center;
+    justify-content: space-between;
+}
+.left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+}
+.right {
+    gap:100px;
+    display: flex;
 }
