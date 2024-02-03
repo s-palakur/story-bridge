@@ -4,4 +4,24 @@
   justify-content: space-between;
   align-items: center;
   min-height: 100vh;
+  background-color: #F9FEFA; 
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 16rem;
+}
+
+.logo {
+  width: 28rem; 
+  height: auto; 
+  flex-shrink: 0;
+}
+
+.description {
+  margin-top: 1rem; 
+  text-align: center;
+  color: black;
 }
