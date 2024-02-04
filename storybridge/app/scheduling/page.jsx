@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
 import { useRouter } from "next/navigation";
-import { updateElderSchedule, isKid, updateKid, updatePoints, addElderToFirestore, addKidToFirestore, isNull } from "../firebase";
+import { updateElderSchedule, isKid, updateKid, updatePoints, addElderToFirestore, addKidToFirestore } from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
@@ -50,11 +50,15 @@ export default function Home() {
       if (isKiddo) {
         await updateKid(day, time);
         await updatePoints(20);
-      } else if (!isNull){
+        console.log("is a kiddo going to success")
+        router.push("/success");
+      } else{
+        console.log("is an elder going to eldertimer")
         await updateElderSchedule(day);
         router.push("/eldertimer");
       }
-      router.push("/dashboard");
+      // console.log("dashboard")
+      // router.push("/dashboard");
     } catch (error) {
       console.error("Error submitting:", error);
     }
