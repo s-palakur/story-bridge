@@ -13,7 +13,7 @@ export default function Home() {
     <div className={styles.main}>
       <Navbar />
       {/* <Timer /> */}
-      <Dash />
+      <Dash /> 
     </div>
   );
 }

@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
-import { isKid } from "./firebase"
+import { isKid, getPoints } from "./firebase";
 
 export default function Navbar() {
-  // Example boolean function isKid
+  const [isKidUser, setIsKidUser] = useState(true);
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch user type when the component mounts
+      const userIsKid = await isKid();
+      setIsKidUser(userIsKid);
+
+      // Fetch points if the user is a kid
+      if (userIsKid) {
+        const userPoints = await getPoints();
+        setPoints(userPoints);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -16,13 +33,14 @@ export default function Navbar() {
         <Link href="/scheduling">
           <h1 style={{ fontWeight: "normal" }}>Schedule Session</h1>
         </Link>
-        {isKid() && <h1 style={{ fontWeight: "normal" }}>Shop</h1>}
+        {isKidUser && <h1 style={{ fontWeight: "normal" }}>Shop</h1>}
       </div>
       <div className={styles.right}>
-        {isKid() && <img src="/coin.svg" alt="coin" width="50" />}
+        {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
+        {isKidUser && points !== null && <div>{points}</div>}
+
         <img src="/profile.svg" alt="profile" width="50" />
       </div>
     </div>
   );
 }
-

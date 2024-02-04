@@ -22,6 +22,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   getFirestore,
   doc,
+  getDoc,
   setDoc,
   Timestamp,
   collection,
@@ -74,6 +75,7 @@ export const firestore = getFirestore(); //basically db
 ////////////
 export async function isKid() {
   const userDocRef = doc(firestore, "userCollection", getID());
+  console.log("getting the IS KID");
   try {
     const userDocSnapshot = await getDoc(userDocRef);
     if (userDocSnapshot.exists()) {
@@ -81,10 +83,30 @@ export async function isKid() {
       const userType = userData.type;
       // Check if the user type is set to "Kid"
       if (userType === "Kid") {
+        console.log("Is a kid!");
         return true; // User is a kid
       }
     }
     return false; // User is not a kid or document doesn't exist
+  } catch (error) {
+    console.error("Error checking user type:", error);
+    return false; // Handle error gracefully, returning false for simplicity
+  }
+}
+
+export async function getPoints() {
+  const userDocRef = doc(firestore, "userCollection", getID());
+  try {
+    const userDocSnapshot = await getDoc(userDocRef);
+    if (userDocSnapshot.exists()) {
+      const userData = userDocSnapshot.data();
+      const userType = userData.type;
+      // Check if the user type is set to "Kid"
+      if (userType === "Kid") {
+        return userType.points; // User is a kid
+      }
+    }
+    return -1; // User is not a kid or document doesn't exist
   } catch (error) {
     console.error("Error checking user type:", error);
     return false; // Handle error gracefully, returning false for simplicity
