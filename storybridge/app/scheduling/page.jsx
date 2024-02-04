@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
 import { useRouter } from "next/navigation";
-import { updateElderSchedule, isKid, updateKid, updatePoints, addElderToFirestore, addKidToFirestore } from "../firebase";
+import { updateElderSchedule, isKid, updateKid, updatePoints, addElderToFirestore, addKidToFirestore, isNull } from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
@@ -50,7 +50,7 @@ export default function Home() {
       if (isKiddo) {
         await updateKid(day, time);
         await updatePoints(20);
-      } else {
+      } else if (!isNull){
         await updateElderSchedule(day);
         router.push("/eldertimer");
       }
