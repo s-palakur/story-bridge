@@ -128,6 +128,7 @@ export async function addKidToFirestore() {
     day: 0,
     hour: 0,
     points: 0,
+    match: "",
   };
 
   // Set the event data directly in the user's document
@@ -145,7 +146,7 @@ export async function addElderToFirestore() {
     id: getID(),
     type: "Elder",
     day: 0,
-    kids: [],
+    match: "",
   };
 
   await setDoc(userDocRef, elder, { merge: true });
@@ -164,14 +165,17 @@ export async function updateElderSchedule(day) {
     const kidQuerySnapshot = await getDocs(kidQuery);
 
     // Collect kid IDs
-    const kids = [];
+    const kids = "[]";
     kidQuerySnapshot.forEach((kidDoc) => {
       const kidData = kidDoc.data();
       kids.push(kidData.id); // Replace "id" with the actual field name containing the kid's ID
     });
 
     // Set the elder data directly in the user's document
-    await setDoc(userDocRef, { day: day, kids: kids });
+    await setDoc(userDocRef, { day: day, match: kids[0] });
+
+    const kidRef = doc(firestore, "userCollection", kids[0]);
+    await updateDoc(kidRef, { match: getID() });
 
     console.log("Elder document updated with kids");
   } catch (error) {
