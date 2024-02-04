@@ -28,10 +28,13 @@ export default function Navbar() {
       <div className={styles.left}>
         <img src="/logo.svg" alt="logo" width="100" />
         <Link href="/dashboard">
-          <h1 style={{ fontWeight: "normal" }}>Home</h1>
+          <h1 style={getLinkStyle("dashboard")}>Home</h1>
         </Link>
         <Link href="/scheduling">
-          <h1 style={{ fontWeight: "normal" }}>Schedule Session</h1>
+          <h1 style={getLinkStyle("scheduling")}>Schedule Session</h1>
+        </Link>
+        <Link href="/shop">
+          {kid && <h1 style={getLinkStyle("shop")}>Shop</h1>}
         </Link>
         {isKidUser && <h1 style={{ fontWeight: "normal" }}>Shop</h1>}
       </div>

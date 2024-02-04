@@ -7,7 +7,7 @@ import Navbar from "../../Navbar";
 export default function Home() {
   return (
     <div>
-      <Navbar />
+      <Navbar pageName="scheduling" />
       <div className={styles.main}>
         <div className={styles.title}>A story is on its way!</div>
         <div className={styles.subtitle}>

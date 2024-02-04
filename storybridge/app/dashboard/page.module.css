@@ -11,6 +11,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
     background-color: #F9FEFA; 
   }
+.container {
+    margin-top:10rem;
+}
+.accent {
+    color: #000;
+    font-size: 96px;
+    font-weight: 700;
+}
+.accent:hover {
+    color:#FFD37B;
+    cursor: pointer;
+}

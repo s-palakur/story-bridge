@@ -1,0 +1,8 @@
+.main {
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+}
