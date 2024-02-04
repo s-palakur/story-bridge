@@ -9,31 +9,24 @@ import { writeUserDoc } from "./firebase";
 
 
 export default function Landing() {
-  const {googleSignIn, user, logOut} = useAuth();
+  // const {googleSignIn, user, logOut} = useAuth();
 
   const router = useRouter();
 
   const handleSignin = async () => {
-    try {
-      const result = await googleSignIn()
-      // You can access user information from the result, if needed
-      const user = result.user;
-      console.log("User signed in:", user);
-    } catch (error) {
-      console.error("Error signing in with Google:", error.message);
-    }
+    router.push('/createAccount');
   };
 
-  useEffect(() => {
-    if (user != null) {
-      router.push('/dashboard');
-      writeUserDoc();
-      console.log("wrote to user doc")
-    } else {
-      router.push('/');
-      console.log("not logged in")
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user != null) {
+  //     router.push('/dashboard');
+  //     writeUserDoc();
+  //     console.log("wrote to user doc")
+  //   } else {
+  //     router.push('/');
+  //     console.log("not logged in")
+  //   }
+  // }, [user]);
 
   return (
     <div className={styles.main}>
