@@ -6,7 +6,7 @@ import Navbar from "../Navbar";
 export default function Home() {
   return (
     <div>
-      <Navbar />
+      <Navbar pageName="shop" />
       <h1>
         Answer questions during storytime to earn gold. Spend your gold here to
         customize your avatar!

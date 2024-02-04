@@ -35,7 +35,7 @@ export default function Home() {
 
   return (
     <div>
-      <Navbar />
+      <Navbar pageName="scheduling" />
       <div className={styles.main}>
         <div className={styles.heading}>
           What day would you like to schedule for?
