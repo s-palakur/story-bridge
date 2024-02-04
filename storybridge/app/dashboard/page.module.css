@@ -1,8 +1,17 @@
 .Countdown {
-    color: #000;
+    color: #F9FEFA;
     font-family: Outfit;
     font-size: 96px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
 }
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F9FEFA; 
+  }

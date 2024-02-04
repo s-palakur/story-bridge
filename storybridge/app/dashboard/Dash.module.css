@@ -1,0 +1,97 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F9FEFA; 
+    margin-top: 1rem;
+  }
+  
+  .logoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+  }
+  
+  .logo {
+    width: 28rem; 
+    height: auto; 
+    flex-shrink: 0;
+  }
+  
+  .description {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 2rem; 
+  }
+
+  .text {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 1.2rem; 
+  }
+  
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between; /* Adjust the spacing between buttons */
+    margin-top: 3rem;
+  }
+  
+  .button {
+    background-color: white;
+    color: black;
+    width: 9rem;
+    height: 5rem;
+    margin-right: 2rem; 
+    margin-left: 2rem;
+    border-radius: 0.5rem;
+    border: 2px solid #f0f0f0;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d0d0d0;
+    color: orange;
+  }
+
+
+  .arrow {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+  }
+  .nextContainer {
+    position: absolute; 
+    bottom: 2rem;
+  }
+  
+  
+  .next {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto; 
+    align-items: center;
+    font-size: 1.8rem;
+    cursor: pointer;
+    border: none; /* Remove the border */
+    background-color: transparent; /* Set background color to transparent */
+  
+  }
+
+  .next span {
+    margin-left: 0.5rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.3rem;
+  }
+  
