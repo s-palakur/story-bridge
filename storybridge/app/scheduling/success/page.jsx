@@ -9,10 +9,8 @@ export default function Home() {
     <div>
       <Navbar pageName="scheduling" />
       <div className={styles.main}>
-        <div className={styles.title}>A story is on its way!</div>
-        <div className={styles.subtitle}>
-          We will send you an email if someone has availability.
-        </div>
+        <h1>A story is on its way!</h1>
+        <h2>We will send you an email if someone has availability.</h2>
       </div>
     </div>
   );
