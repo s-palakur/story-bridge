@@ -74,6 +74,7 @@
     height: 200px;
     font-size: 50px;
     transition: background-color 0.3s ease;
+    margin-bottom: 50px;
 }
   .button:hover {
     /* Change the background color on hover */

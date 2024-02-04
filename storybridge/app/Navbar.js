@@ -61,7 +61,8 @@ export default function Navbar({ pageName = "Home" }) {
       <div className={styles.right}>
         {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
         {isKidUser && points !== null && <h1>{points}</h1>}
-        <img src="/profile.svg" alt="profile" width="50" />
+        <Link href="/profile">
+        <img src="/profile.svg" alt="profile" width="50" /></Link>
         <h2 style={{ ...getLinkStyle("sign out"), marginRight: "40px" }} onClick={() => logOut()}>
           Sign Out
         </h2>

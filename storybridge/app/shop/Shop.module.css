@@ -1,0 +1,41 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #F9FEFA; 
+    margin-top: 1rem;
+  }
+  
+  .logoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10rem;
+    padding: 4rem;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+  }
+  
+  .logo {
+    margin-top: 2rem;
+    width: 20rem; 
+    height: auto; 
+    flex-shrink: 0;
+  }
+  
+  .description {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 1.7rem; 
+  }
+
+  .text {
+    margin-top: 2rem; 
+    text-align: center;
+    color: black;
+    font-size: 1.2rem; 
+  }
+  
