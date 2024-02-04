@@ -10,7 +10,7 @@ import CountdownTimer from "./CountdownTimer";
 export default function Home() {
   const targetDate = new Date();
   targetDate.setDate(targetDate.getDate() + 7);
-  const hasSession = false;
+  const hasSession = true;
   // TODO: dynamically set
 
   return (

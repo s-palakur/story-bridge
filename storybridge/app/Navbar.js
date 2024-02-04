@@ -49,22 +49,22 @@ export default function Navbar({ pageName = "Home" }) {
       <div className={styles.left}>
         <img src="/logo.svg" alt="logo" width="100" />
         <Link href="/dashboard">
-          <h1 style={getLinkStyle("dashboard")}>Home</h1>
+          <h2 style={getLinkStyle("dashboard")}>Home</h2>
         </Link>
         <Link href="/scheduling">
-          <h1 style={getLinkStyle("scheduling")}>Schedule Session</h1>
+          <h2 style={getLinkStyle("scheduling")}>Schedule Session</h2>
         </Link>
         <Link href="/shop">
-          {isKidUser && <h1 style={getLinkStyle("shop")}>Shop</h1>}
+          {isKidUser && <h2 style={getLinkStyle("shop")}>Shop</h2>}
         </Link>
       </div>
       <div className={styles.right}>
         {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
         {isKidUser && points !== null && <h1>{points}</h1>}
         <img src="/profile.svg" alt="profile" width="50" />
-        <h1 style={getLinkStyle("sign out")} onClick={() => logOut()}>
+        <h2 style={{ ...getLinkStyle("sign out"), marginRight: "40px" }} onClick={() => logOut()}>
           Sign Out
-        </h1>
+        </h2>
       </div>
     </div>
   );
