@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
-import { addKidToFirestore } from "../firebase";
+import { addKidToFirestore, isKid } from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
@@ -24,8 +24,7 @@ export default function Home() {
     "8PM",
     "9PM",
   ];
-  const isKid = true;
-  // TODO: replace with user data
+  const isKiddo = isKid();
 
   // submits two numbers, day ranges 1-7, and time ranges 9-21 for 9AM to 9PM
   const handleSubmit = () => {
@@ -58,7 +57,7 @@ export default function Home() {
             </div>
           ))}
         </div>
-        {isKid && (
+        {isKiddo && (
           <div className={styles.mainKid}>
             <div className={styles.heading}>What hour are you free?</div>
             <h1>Select one.</h1>
