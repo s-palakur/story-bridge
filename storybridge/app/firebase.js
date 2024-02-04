@@ -213,7 +213,7 @@ export async function updateElderSchedule(day) {
 
       // Now you can use kidData as needed
       console.log("day:", day);
-      const m = "sahitigabrani@gmail.com";
+      const m = "amyli3@g.ucla.edu";
 /*
       console.log("Kid data:", kidData);
       // Set the elder data directly in the user's document

@@ -41,7 +41,7 @@ const CountdownTimer = () => {
 
     <div id="readable" className={styles.countdownContainer}>
       <TextToSpeechButton />
-      <h1>You've been matched to read with Sahiti for 4PM Tuesday, Feb 6th, 2024.</h1>
+      <h1>You've been matched to read with Amy for 4PM Tuesday, Feb 6th, 2024.</h1>
       <div className={styles.timeDisplay}>
         <span style={{ fontWeight: 600 }}>{timeRemaining.days} days </span>
         <span style={{ fontWeight: 600 }}>{timeRemaining.hours} hr </span>
