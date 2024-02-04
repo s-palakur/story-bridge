@@ -4,13 +4,14 @@ import styles from "./Landing.module.css";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuth, UserAuth, AuthContextProvider } from "./context/AuthContext.js"
 import { useEffect, useState } from "react";
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+// import { writeUserDoc } from "./context/firebase";
 
 
 export default function Landing() {
   const {googleSignIn, user, logOut} = useAuth();
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const handleSignin = async () => {
     try {
@@ -23,14 +24,14 @@ export default function Landing() {
     }
   };
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     router.push('/dashboard');
-  //     writeUserDoc();
-  //   } else {
-  //     navigate("/");
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user != null) {
+      router.push('/dashboard');
+      // writeUserDoc();
+    } else {
+      router.push('/');
+    }
+  }, [user]);
 
   return (
     <div className={styles.main}>
