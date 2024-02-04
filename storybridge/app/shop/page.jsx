@@ -7,10 +7,12 @@ export default function Home() {
   return (
     <div>
       <Navbar pageName="shop" />
-      <h1>
-        Answer questions during storytime to earn gold. Spend your gold here to
-        customize your avatar!
-      </h1>
+      <div className={styles.main}>
+        <h1>
+          Answer questions during storytime to earn gold. Spend your gold here
+          to customize your avatar!
+        </h1>
+      </div>
     </div>
   );
 }

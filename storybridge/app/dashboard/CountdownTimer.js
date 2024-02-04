@@ -30,7 +30,7 @@ const CountdownTimer = ({ targetDate }) => {
   return (
     <div className={styles.countdownContainer}>
       <h1>
-        You have 1 upcoming story session with Swetha on 3PM Sunday, Feb 4th,
+        You have an upcoming story session with Swetha on 3PM Sunday, Feb 4th,
         2024.
       </h1>
       <div className={styles.timeDisplay}>
