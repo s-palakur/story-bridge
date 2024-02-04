@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from "react";
+import { useUser, UserProvider} from '../context/UserContext';
 import styles from "./createAccount.module.css";
 // import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 // import { useAuth, UserAuth, AuthContextProvider } from "./context/AuthContext.js"
@@ -8,15 +9,17 @@ import { useRouter } from 'next/navigation';
 // import { writeUserDoc } from "./firebase";
 
 
+
 export default function createAccount() {
   // const {googleSignIn, user, logOut} = useAuth();
 
   const router = useRouter();
-
-  const [userInput, setUserInput] = useState("");
+  const [userInput, setUserInput] = useState('');
+//   const { updateUser } = useUser();
 
   const handleSignin = async () => {
     console.log("User input:", userInput);
+    // updateUser(userInput);
     // router.push('/dashboard');
   };
 
@@ -51,7 +54,7 @@ export default function createAccount() {
   // }, [user]);
 
   return (
-    <div className={styles.main}>
+        <div className={styles.main}>
       <div className={styles.logoContainer}>
       <img src="/logo.svg" alt="logo" className={styles.logo} />
             <p  className={styles.description}>Create an account or log in.</p>
@@ -66,6 +69,7 @@ export default function createAccount() {
 
       </div>
     </div>
+    
     
   );
 }
