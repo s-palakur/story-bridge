@@ -108,4 +108,31 @@
     padding-bottom: 0.4rem;
     padding-left: 0.3rem;
   }
+
+
+.highContrast {
+  background-color: black;
+  color: white;
+  /* Add additional high contrast styles as needed */
+}
+
+/* Add a style for the toggle button */
+.toggleButton {
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  background-color: white;
+  color: black;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  border: 2px solid #F0F0F0;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.toggleButton:hover {
+  background-color: #3c79d0;
+}
+
   

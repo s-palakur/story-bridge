@@ -1,6 +1,7 @@
 // CountdownTimer.js
 import React, { useState, useEffect } from "react";
 import styles from "./CountdownTimer.module.css";
+import TextToSpeechButton from "./tts.js"
 
 
 
@@ -37,7 +38,9 @@ const CountdownTimer = () => {
   };
 
   return (
-    <div className={styles.countdownContainer}>
+
+    <div id="readable" className={styles.countdownContainer}>
+      <TextToSpeechButton />
       <h1>You've been matched to read with Sahiti for 4PM Tuesday, Feb 6th, 2024.</h1>
       <div className={styles.timeDisplay}>
         <span style={{ fontWeight: 600 }}>{timeRemaining.days} days </span>
@@ -45,7 +48,7 @@ const CountdownTimer = () => {
         <span style={{ fontWeight: 600 }}>{timeRemaining.minutes} min </span>
         <span style={{ fontWeight: 600 }}>{timeRemaining.seconds} sec </span>
       </div>
-      <h1>until reading time!</h1>
+      <h1> until reading time!</h1>
 
       {/* Button to open Google Meet */}
       <button onClick={openGoogleMeet} className={styles.button}>

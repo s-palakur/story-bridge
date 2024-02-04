@@ -12,8 +12,9 @@ const TextToSpeechButton = () => {
       // get voice options
       const voices = window.speechSynthesis.getVoices();
       // console.log(voices)
-      const desiredVoice = voices.find(voice => voice.name === "Grandpa (English (United Kingdom))");
+      const desiredVoice = voices.find(voice => voice.name === "Gordon");
       // Set the desired voice for the utterance
+      utterance.rate = 0.7;
       utterance.voice = desiredVoice;
       speechSynthesis.speak(utterance);
     } else {

@@ -17,10 +17,8 @@ export default function Landing() {
     try {
       const result = await googleSignIn()
       // You can access user information from the result, if needed
-      const user = result.user.email;
-      
+      const user = result.user;
       console.log("User signed in:", user);
-      // router.push('/dashboard');
     } catch (error) {
       console.error("Error signing in with Google:", error.message);
     }
@@ -28,7 +26,6 @@ export default function Landing() {
 
   useEffect(() => {
     if (user != null) {
-      console.log(user);
       router.push('/dashboard');
       writeUserDoc();
       console.log("wrote to user doc")
