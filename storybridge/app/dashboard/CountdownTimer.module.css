@@ -38,12 +38,13 @@
     margin-left: auto;
     margin-right: auto;
     color: black;
-    width: 15rem;
-    height: 8rem;
+    width: 20rem;
+    height: 10rem;
     flex-shrink: 0;
     border-radius: 0.7rem;
     box-shadow: 2.033px 2.033px 10.063px 0px rgba(0, 0, 0, 0.1);
     display: inline-block;
+    font-family: inherit;
     font-size: 1rem;
     cursor: pointer;
   }
@@ -53,7 +54,7 @@
   }
   
   .googleMeetLogo {
-    width: 50px; /* Adjust size as needed */
-    height: 40px;
+    width: 75px; /* Adjust size as needed */
+    height: 60px;
   }
   

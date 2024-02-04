@@ -107,7 +107,7 @@ export async function getPoints() {
         return userData.points; // User is a kid
       }
     }
-    return -1; // User is not a kid or document doesn't exist
+    return 0; // User is not a kid or document doesn't exist
   } catch (error) {
     console.error("Error checking user type:", error);
     return false; // Handle error gracefully, returning false for simplicity
