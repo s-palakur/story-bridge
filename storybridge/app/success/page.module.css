@@ -8,18 +8,18 @@
 }
 .title {
     color: #000;
-    font-family: Outfit;
-    font-size: 48px;
+    font-family: inherit;
+    font-size: 50px;
     font-style: normal;
-    font-weight: 400;
+    font-weight: 700;
     line-height: normal;
 }
 .subtitle {
     color: #000;
     
     /* Header 1 */
-    font-family: Outfit;
-    font-size: 32px;
+    font-family: inherit;
+    font-size: 30px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;

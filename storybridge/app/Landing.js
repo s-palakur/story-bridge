@@ -24,16 +24,16 @@ export default function Landing() {
     }
   };
 
-  // useEffect(() => {
-  //   if (user != null) {
-  //     router.push('/dashboard');
-  //     writeUserDoc();
-  //     console.log("wrote to user doc")
-  //   } else {
-  //     router.push('/');
-  //     console.log("not logged in")
-  //   }
-  // }, [user]);
+  useEffect(() => {
+    if (user != null) {
+      router.push('/dashboard');
+      writeUserDoc();
+      console.log("wrote to user doc")
+    } else {
+      router.push('/');
+      console.log("not logged in")
+    }
+  }, [user]);
 
   return (
     <div className={styles.main}>

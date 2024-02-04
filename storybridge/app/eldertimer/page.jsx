@@ -2,8 +2,8 @@
 
 // YourPage.js
 import React from "react";
-import CountdownTimer from "./CountdownTimer";
-import "./CountdownTimer.module.css"
+import CountdownTimer from "../dashboard/CountdownTimer";
+import "../dashboard/CountdownTimer.module.css"
 
 const Timer = () => {
   // Set the target date to 7 days from now

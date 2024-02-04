@@ -5,7 +5,7 @@
     margin-top: 3rem;
     bottom: 5rem;
     color: #000;
-    font-family: Outfit;
+    font-family: inherit;
     font-size: 96px;
     font-style: normal;
     font-weight: 700;
@@ -15,7 +15,7 @@
   /* components/CountdownTimer.module.css */
 .countdownContainer {
     text-align: center;
-    margin-top: 7rem;
+    margin-top: 10rem;
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -27,8 +27,33 @@
     gap: 10px;
     font-size: 18px;
     color: #000;
-    font-size: 96px;
+    font-size: 100px;
   }
   
   /* Add additional styling as needed */
+
+  .button {
+    background-color: white;
+    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+    width: 15rem;
+    height: 8rem;
+    flex-shrink: 0;
+    border-radius: 0.7rem;
+    box-shadow: 2.033px 2.033px 10.063px 0px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #f0f0f0; /* Add a subtle hover effect */
+  }
+  
+  .googleMeetLogo {
+    width: 50px; /* Adjust size as needed */
+    height: 40px;
+  }
   

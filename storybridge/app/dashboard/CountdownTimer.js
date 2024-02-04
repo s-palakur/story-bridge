@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import styles from "./CountdownTimer.module.css";
 
+
+
 const CountdownTimer = ({ targetDate }) => {
   const calculateTimeRemaining = () => {
     const now = new Date().getTime();
@@ -27,21 +29,29 @@ const CountdownTimer = ({ targetDate }) => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
+
+  const openGoogleMeet = () => {
+    // Replace 'YOUR_MEET_LINK' with the actual Google Meet link
+    const meetLink = 'https://meet.google.com/ist-tcxg-epc';
+    window.open(meetLink, '_blank');
+  };
+
   return (
     <div className={styles.countdownContainer}>
-      <h1>
-        You have an upcoming story session with Swetha on 3PM Sunday, Feb 4th,
-        2024.
-      </h1>
+      <h1>You've been matched to read with Sahiti for 4PM Tuesday, Feb 6th, 2024.</h1>
       <div className={styles.timeDisplay}>
-        <span style={{ fontWeight: 600 }}>{timeRemaining.days} days</span>
-        <span style={{ fontWeight: 600 }}>{timeRemaining.hours} hr</span>
-        <span style={{ fontWeight: 600 }}>{timeRemaining.minutes} min</span>
-        <span style={{ fontWeight: 600 }}>{timeRemaining.seconds} sec</span>
+        <span style={{ fontWeight: 600 }}>{timeRemaining.days} days </span>
+        <span style={{ fontWeight: 600 }}>{timeRemaining.hours} hr </span>
+        <span style={{ fontWeight: 600 }}>{timeRemaining.minutes} min </span>
+        <span style={{ fontWeight: 600 }}>{timeRemaining.seconds} sec </span>
       </div>
-      <h1>
-        until reading with Swetha! Check back here to join the video call.
-      </h1>
+      <h1>until reading time!</h1>
+
+      {/* Button to open Google Meet */}
+      <button onClick={openGoogleMeet} className={styles.button}>
+      <img className={styles.googleMeetLogo} src="/google_meet_logo.png" alt="Google Meet Logo" />
+      <h1>CLICK HERE</h1>
+      </button>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import styles from "./page.module.css";
-import Navbar from "../../Navbar";
+import Navbar from "../Navbar";
 // import "../../global.css";
 
 export default function Home() {
@@ -9,8 +9,8 @@ export default function Home() {
     <div>
       <Navbar pageName="scheduling" />
       <div className={styles.main}>
-        <h1>A story is on its way!</h1>
-        <h2>We will send you an email if someone has availability.</h2>
+        <h1 className={styles.title}>Waiting for a page pal!</h1>
+        <h2 className={styles.subtitle}>We will let you know if someone has availability.</h2>
       </div>
     </div>
   );
