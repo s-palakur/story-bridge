@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { useAuth, UserAuth, AuthContextProvider } from "./context/AuthContext.js"
 import { useEffect, useState } from "react";
 import { useRouter } from 'next/navigation';
-// import { writeUserDoc } from "./context/firebase";
+import { writeUserDoc } from "./firebase";
 
 
 export default function Landing() {
@@ -27,9 +27,11 @@ export default function Landing() {
   useEffect(() => {
     if (user != null) {
       router.push('/dashboard');
-      // writeUserDoc();
+      writeUserDoc();
+      console.log("wrote to user doc")
     } else {
       router.push('/');
+      console.log("not logged in")
     }
   }, [user]);
 

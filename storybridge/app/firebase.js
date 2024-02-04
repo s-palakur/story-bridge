@@ -1,27 +1,7 @@
-import { initializeApp } from "firebase/app";
 // Import the functions you need from the SDKs you need
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
-import firebase from "firebase/compat/app";
-// Required for side-effects
-import {
-  getFirestore,
-  doc,
-  setDoc,
-  Timestamp,
-  collection,
-  addDoc,
-  updateDoc,
-  query,
-  where,
-  getDocs,
-  onSnapshot,
-  deleteDoc,
-} from "firebase/firestore";
-
-
-import { onAuthStateChanged } from "firebase/auth";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -35,10 +15,59 @@ const firebaseConfig = {
   measurementId: "G-XG7YCND9PS"
 };
 
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+// imports for firestore
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  Timestamp,
+  collection,
+  addDoc,
+  updateDoc,
+  query,
+  where,
+  getDocs,
+  collectionGroup,
+  deleteDoc,
+} from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+export const auth = getAuth(app);
+
+//function to see if the user is signed in so we can retrieve email id @s-palakur
+export function getID() {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user != null) {
+    // console.log(user.email);
+    return user.email;
+  }
+  return "no user";
+}
+
+
+
+export function writeUserDoc() {
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      const userCollection = doc(firestore, "userCollection/" + user.email);
+      if (user) {
+        const docData = {
+          // userid that's stored in user-doc
+          user: user.uid,
+          name: user.displayName,
+          email: user.email,
+          photoURL: user.photoURL,
+        };
+        setDoc(userCollection, docData);
+      }
+    });
+  }
 
 export const firestore = getFirestore(); //basically db
 
