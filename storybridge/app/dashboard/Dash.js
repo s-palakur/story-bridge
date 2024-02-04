@@ -7,6 +7,8 @@ import {
   addKidToFirestore
 } from "../firebase";
 
+import TextToSpeechButton from "./tts.js"
+
 export default function Dash() {
   const router = useRouter();
 
@@ -25,7 +27,9 @@ export default function Dash() {
 
   return (
     <div className={styles.main}>
+      <TextToSpeechButton />
       <div className={styles.logoContainer}>
+      <div id="readable">
         <p className={styles.description}>I am a...</p>
         <div className={styles.buttonContainer}>
           <button
@@ -41,7 +45,8 @@ export default function Dash() {
             Elder
           </button>
         </div>
+        </div>
       </div>
-    </div>
+     </div> 
   );
 }
