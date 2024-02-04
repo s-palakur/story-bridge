@@ -1,14 +1,17 @@
 "use client"
+
 import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
 import { useRouter } from "next/navigation";
 import { updateElderSchedule, isKid, updateKid, updatePoints, addElderToFirestore, addKidToFirestore } from "../firebase";
+
 export default function Home() {
   const [day, setDay] = useState(-1);
   const [time, setTime] = useState(-1);
   const [isKiddo, setIsKiddo] = useState(false);
   const router = useRouter();
+
   // Define the days and times arrays
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const times = [
@@ -27,6 +30,7 @@ export default function Home() {
     "8PM",
     "9PM",
   ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -36,21 +40,21 @@ export default function Home() {
         console.error("Error checking if user is a kid:", error);
       }
     };
+
     fetchData();
   }, []);
+
   const handleSubmit = async () => {
     try {
       console.log("submitting ", day, time);
       if (isKiddo) {
-        await addKidToFirestore();
         await updateKid(day, time);
-        // await updatePoints(20);
-        router.push("/success");
+        await updatePoints(20);
       } else {
-        await addElderToFirestore();
         await updateElderSchedule(day);
         router.push("/eldertimer");
       }
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error submitting:", error);
     }
@@ -98,11 +102,14 @@ export default function Home() {
             </select>
           </div>
         )}
+
         <button
           onClick={handleSubmit}
           className={styles.button}
           disabled={!(day !== -1 && ((isKiddo && time !== -1) || !isKiddo))}
+          disabled={!(day !== -1 && ((isKiddo && time !== -1) || !isKiddo))}
         >
+           <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
            <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
         </button>
       </div>
