@@ -3,7 +3,7 @@ import styles from "./Navbar.module.css";
 import Link from "next/link";
 import { isKid, getPoints } from "./firebase";
 
-export default function Navbar() {
+export default function Navbar({ pageName = "Home" }) {
   const [isKidUser, setIsKidUser] = useState(true);
   const [points, setPoints] = useState(0);
 
@@ -23,6 +23,14 @@ export default function Navbar() {
     fetchData();
   }, []);
 
+  // Function to determine the style of a link
+  const getLinkStyle = (linkName) => {
+    return {
+      fontWeight: "normal",
+      color: pageName === linkName ? "#FEAE8E" : "inherit", // Change color to yellow if pageName matches
+    };
+  };
+
   return (
     <div className={styles.main}>
       <div className={styles.left}>
@@ -34,16 +42,24 @@ export default function Navbar() {
           <h1 style={getLinkStyle("scheduling")}>Schedule Session</h1>
         </Link>
         <Link href="/shop">
-          {kid && <h1 style={getLinkStyle("shop")}>Shop</h1>}
+          {isKidUser && <h1 style={getLinkStyle("shop")}>Shop</h1>}
         </Link>
-        {isKidUser && <h1 style={{ fontWeight: "normal" }}>Shop</h1>}
       </div>
       <div className={styles.right}>
-        {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
-        {isKidUser && points !== null && <div>{points}</div>}
-
+      {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
+      {isKidUser && points !== null && <div>{points}</div>}
         <img src="/profile.svg" alt="profile" width="50" />
+        <h1 style={getLinkStyle("sign out")} onClick={() => logOut()}>
+          Sign Out
+        </h1>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+

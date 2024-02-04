@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
-import { addKidToFirestore, isKid } from "../firebase";
+import { updateElderSchedule, isKid, updateKid, updatePoints} from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
@@ -30,7 +30,15 @@ export default function Home() {
     try {
       // Use await when calling the async function
       console.log("submitting ", day, time);
-      await addKidToFirestore(day, time);
+      if(isKiddo)
+      {
+        await updateKid(day, time);
+        await updatePoints(20);
+      }
+      else
+      {
+        await updateElderSchedule(day);
+      }
     } catch (error) {
       console.error("Error submitting:", error);
     }

@@ -83,7 +83,7 @@ export async function isKid() {
       const userType = userData.type;
       // Check if the user type is set to "Kid"
       if (userType === "Kid") {
-        console.log("Is a kid!");
+        console.log("Is a kid!")
         return true; // User is a kid
       }
     }
@@ -103,7 +103,7 @@ export async function getPoints() {
       const userType = userData.type;
       // Check if the user type is set to "Kid"
       if (userType === "Kid") {
-        return userType.points; // User is a kid
+        return userData.points; // User is a kid
       }
     }
     return -1; // User is not a kid or document doesn't exist
@@ -131,7 +131,7 @@ export async function addKidToFirestore() {
   };
 
   // Set the event data directly in the user's document
-  await setDoc(userDocRef, { user: kid }, { merge: true });
+  await setDoc(userDocRef, kid, { merge: true });
 }
 /////////////////
 
@@ -144,20 +144,20 @@ export async function addElderToFirestore() {
     // Your event data here
     id: getID(),
     type: "Elder",
-    days: [],
+    day: 0,
     kids: [],
   };
 
-  await setDoc(userDocRef, { user: elder }, { merge: true });
+  await setDoc(userDocRef, elder, { merge: true });
 }
 
-export async function updateElderSchedule(days) {
+export async function updateElderSchedule(day) {
   try {
     // Query to find "Kid" documents with matching days
     const kidQuery = query(
       collection(firestore, "userCollection", getID()),
       where("type", "==", "Kid"),
-      where("day", "in", days)
+      where("day", "==", day)
     );
 
     // Execute the query
@@ -171,7 +171,7 @@ export async function updateElderSchedule(days) {
     });
 
     // Set the elder data directly in the user's document
-    await setDoc(userDocRef, { days: days, kids: kids });
+    await setDoc(userDocRef, { day: day, kids: kids });
 
     console.log("Elder document updated with kids");
   } catch (error) {
@@ -198,7 +198,7 @@ export async function updateKid(day, hour) {
 
 
 //////////////////////////////////
-export async function updatePointsBy100() {
+export async function updatePoints(num) {
   const userDocRef = doc(firestore, 'userCollection', getID());
 
   try {
@@ -210,7 +210,7 @@ export async function updatePointsBy100() {
     const currentPoints = userData && userData.points ? userData.points : 0;
 
     // Calculate the new points value by adding 100
-    const newPointsValue = currentPoints + 100;
+    const newPointsValue = currentPoints + num;
 
     // Update the "points" field in the user's document
     await updateDoc(userDocRef, {points: newPointsValue});
