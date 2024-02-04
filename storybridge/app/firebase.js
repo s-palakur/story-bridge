@@ -140,13 +140,13 @@ export async function matchFound() {
     const userDocSnapshot = await getDoc(userDocRef);
     if (userDocSnapshot.exists()) {
       const userData = userDocSnapshot.data();
-      const userType = userData.type;
+      const userMatch = userData.match;
       // Check if the user type is set to "Kid"
-      if (userType === "Kid") {
-        return userData.points; // User is a kid
+      if (userMatch === "") {
+        return false; // User does not have a match
       }
     }
-    return -1; // User is not a kid or document doesn't exist
+    return true; // User has a match
   } catch (error) {
     console.error("Error checking user type:", error);
     return false; // Handle error gracefully, returning false for simplicity
@@ -194,30 +194,41 @@ export async function addElderToFirestore() {
 
 export async function updateElderSchedule(day) {
   try {
-    // Query to find "Kid" documents with matching days
-    const kidQuery = query(
-      collection(firestore, "userCollection", getID()),
-      where("type", "==", "Kid"),
-      where("day", "==", day)
-    );
+    const userId = getID();
 
+    const kidQuery = query(
+      collection(firestore, "userCollection"),
+      where("type", "==", "Kid"),
+      where("day", "==", day), // Convert day to an integer
+    );
     // Execute the query
     const kidQuerySnapshot = await getDocs(kidQuery);
 
-    // Collect kid IDs
-    const kids = "[]";
-    kidQuerySnapshot.forEach((kidDoc) => {
-      const kidData = kidDoc.data();
-      kids.push(kidData.id); // Replace "id" with the actual field name containing the kid's ID
-    });
+    if (!kidQuerySnapshot.empty) {
+      // Retrieve the first (and only) document from the snapshot
+      const firstKidDoc = kidQuerySnapshot.docs[0];
 
-    // Set the elder data directly in the user's document
-    await setDoc(userDocRef, { day: day, match: kids[0] });
+      // Access the document data
+      const kidData = firstKidDoc.data();
 
-    const kidRef = doc(firestore, "userCollection", kids[0]);
-    await updateDoc(kidRef, { match: getID() });
+      // Now you can use kidData as needed
+      console.log("day:", day);
+      const m = "sahitigabrani@gmail.com";
+/*
+      console.log("Kid data:", kidData);
+      // Set the elder data directly in the user's document
+*/
+      const userDocRef = doc(firestore, "userCollection", getID());
+      await updateDoc(userDocRef, { day: 2, match: m });
+      console.log("Elder document updated with kids");
+      const kidDocRef = doc(firestore, "userCollection", m);
+      await updateDoc(kidDocRef, { match: getID()});
 
-    console.log("Elder document updated with kids");
+    }
+    else {
+      console.log("No matching Kid document found.");
+    }
+
   } catch (error) {
     console.error("Error updating elder document:", error);
   }
@@ -257,7 +268,7 @@ export async function updatePoints(num) {
     const newPointsValue = currentPoints + num;
 
     // Update the "points" field in the user's document
-    await updateDoc(userDocRef, {points: newPointsValue});
+    await updateDoc(userDocRef, { points: newPointsValue });
 
     console.log("Points updated successfully");
   } catch (error) {
