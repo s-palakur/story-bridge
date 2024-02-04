@@ -107,3 +107,30 @@ a {
     color-scheme: dark;
   }
 }
+
+
+h1 {
+  color: var(--Black, #182F1F);
+  /* Header 1 */
+  font-family: inherit;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+h2 {
+  /* Header 2 */
+  font-family: inherit;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+p {
+  /* Paragraph */
+  font-family: inherit;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}

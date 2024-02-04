@@ -1,12 +1,18 @@
-"use client";
-import React, { useState } from "react";
+"use client"
+
+import React, { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
-import { updateElderSchedule, isKid, updateKid, updatePoints} from "../firebase";
+import { useRouter } from "next/navigation";
+import { updateElderSchedule, isKid, updateKid, updatePoints } from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
   const [time, setTime] = useState(-1);
+  const [isKiddo, setIsKiddo] = useState(false);
+  const router = useRouter();
+
+  // Define the days and times arrays
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const times = [
     "-",
@@ -24,21 +30,30 @@ export default function Home() {
     "8PM",
     "9PM",
   ];
-  const isKiddo = isKid();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await isKid();
+        setIsKiddo(result);
+      } catch (error) {
+        console.error("Error checking if user is a kid:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async () => {
     try {
-      // Use await when calling the async function
       console.log("submitting ", day, time);
-      if(isKiddo)
-      {
+      if (isKiddo) {
         await updateKid(day, time);
-        await updatePoints(20);
-      }
-      else
-      {
+        // await updatePoints(20);
+      } else {
         await updateElderSchedule(day);
       }
+      router.push("/dashboard");
     } catch (error) {
       console.error("Error submitting:", error);
     }
@@ -64,7 +79,7 @@ export default function Home() {
               }}
             >
               {name}
-              <br />2 / 1{/* TODO: dynamically show date */}
+              <br />2 / {5+index}
             </div>
           ))}
         </div>
@@ -88,13 +103,12 @@ export default function Home() {
           </div>
         )}
 
-        {/* Use the async function handleSubmit as the onClick handler for the submit button */}
         <button
           onClick={handleSubmit}
           className={styles.button}
-          disabled={!(day !== -1 && ((isKid && time !== -1) || !isKid))}
+          disabled={!(day !== -1 && ((isKiddo && time !== -1) || !isKiddo))}
         >
-          Submit
+           <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
         </button>
       </div>
     </div>

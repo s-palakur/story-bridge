@@ -64,6 +64,7 @@ export function writeUserDoc() {
         name: user.displayName,
         email: user.email,
         photoURL: user.photoURL,
+        type: "null",
       };
       setDoc(userCollection, docData);
     }
@@ -95,6 +96,45 @@ export async function isKid() {
 }
 
 export async function getPoints() {
+  const userDocRef = doc(firestore, "userCollection", getID());
+  try {
+    const userDocSnapshot = await getDoc(userDocRef);
+    if (userDocSnapshot.exists()) {
+      const userData = userDocSnapshot.data();
+      const userType = userData.type;
+      // Check if the user type is set to "Kid"
+      if (userType === "Kid") {
+        return userData.points; // User is a kid
+      }
+    }
+    return -1; // User is not a kid or document doesn't exist
+  } catch (error) {
+    console.error("Error checking user type:", error);
+    return false; // Handle error gracefully, returning false for simplicity
+  }
+}
+
+export async function isNull() {
+  const userDocRef = doc(firestore, "userCollection", getID());
+  try {
+    const userDocSnapshot = await getDoc(userDocRef);
+    if (userDocSnapshot.exists()) {
+      const userData = userDocSnapshot.data();
+      const userType = userData.type;
+      // Check if the user type is set to "Kid"
+      if (userType === "null") {
+        return true; // User is a kid
+      }
+    }
+    return false; // User is not a kid or document doesn't exist
+  } catch (error) {
+    console.error("Error checking user type:", error);
+    return false; // Handle error gracefully, returning false for simplicity
+  }
+}
+
+
+export async function matchFound() {
   const userDocRef = doc(firestore, "userCollection", getID());
   try {
     const userDocSnapshot = await getDoc(userDocRef);

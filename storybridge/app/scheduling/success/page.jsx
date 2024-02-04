@@ -7,11 +7,11 @@ import Navbar from "../../Navbar";
 export default function Home() {
   return (
     <div>
-      <Navbar pageName="scheduling" />
-      <div className={styles.main}>
-        <h1>A story is on its way!</h1>
-        <h2>We will send you an email if someone has availability.</h2>
-      </div>
-    </div>
+  <Navbar pageName="scheduling" />
+  <div className={styles.main}>
+    <h1 style={{ fontSize: "200px" }}>A story is on its way!</h1>
+    <h2 style={{ fontSize: "150px" }}>Click HOME to check availability.</h2>
+  </div>
+</div>
   );
 }
