@@ -79,7 +79,7 @@ export default function Home() {
               }}
             >
               {name}
-              <br />2 / {5+index}
+              <br />2 / {5 + index}
             </div>
           ))}
         </div>
@@ -107,10 +107,8 @@ export default function Home() {
           onClick={handleSubmit}
           className={styles.button}
           disabled={!(day !== -1 && ((isKiddo && time !== -1) || !isKiddo))}
-          disabled={!(day !== -1 && ((isKiddo && time !== -1) || !isKiddo))}
         >
-           <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
-           <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
+          <h1>{isKiddo ? "Submit" : "CLICK HERE to Submit"}</h1>
         </button>
       </div>
     </div>
