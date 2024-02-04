@@ -22,6 +22,7 @@ import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {
   getFirestore,
   doc,
+  getDoc,
   setDoc,
   Timestamp,
   collection,
@@ -74,6 +75,7 @@ export const firestore = getFirestore(); //basically db
 ////////////
 export async function isKid() {
   const userDocRef = doc(firestore, "userCollection", getID());
+  console.log("getting the IS KID");
   try {
     const userDocSnapshot = await getDoc(userDocRef);
     if (userDocSnapshot.exists()) {
@@ -81,10 +83,30 @@ export async function isKid() {
       const userType = userData.type;
       // Check if the user type is set to "Kid"
       if (userType === "Kid") {
+        console.log("Is a kid!")
         return true; // User is a kid
       }
     }
     return false; // User is not a kid or document doesn't exist
+  } catch (error) {
+    console.error("Error checking user type:", error);
+    return false; // Handle error gracefully, returning false for simplicity
+  }
+}
+
+export async function getPoints() {
+  const userDocRef = doc(firestore, "userCollection", getID());
+  try {
+    const userDocSnapshot = await getDoc(userDocRef);
+    if (userDocSnapshot.exists()) {
+      const userData = userDocSnapshot.data();
+      const userType = userData.type;
+      // Check if the user type is set to "Kid"
+      if (userType === "Kid") {
+        return userData.points; // User is a kid
+      }
+    }
+    return -1; // User is not a kid or document doesn't exist
   } catch (error) {
     console.error("Error checking user type:", error);
     return false; // Handle error gracefully, returning false for simplicity
@@ -106,10 +128,11 @@ export async function addKidToFirestore() {
     day: 0,
     hour: 0,
     points: 0,
+    match: "",
   };
 
   // Set the event data directly in the user's document
-  await setDoc(userDocRef, { user: kid }, { merge: true });
+  await setDoc(userDocRef, kid, { merge: true });
 }
 /////////////////
 
@@ -122,34 +145,37 @@ export async function addElderToFirestore() {
     // Your event data here
     id: getID(),
     type: "Elder",
-    days: [],
-    kids: [],
+    day: 0,
+    match: "",
   };
 
-  await setDoc(userDocRef, { user: elder }, { merge: true });
+  await setDoc(userDocRef, elder, { merge: true });
 }
 
-export async function updateElderSchedule(days) {
+export async function updateElderSchedule(day) {
   try {
     // Query to find "Kid" documents with matching days
     const kidQuery = query(
       collection(firestore, "userCollection", getID()),
       where("type", "==", "Kid"),
-      where("day", "in", days)
+      where("day", "==", day)
     );
 
     // Execute the query
     const kidQuerySnapshot = await getDocs(kidQuery);
 
     // Collect kid IDs
-    const kids = [];
+    const kids = "[]";
     kidQuerySnapshot.forEach((kidDoc) => {
       const kidData = kidDoc.data();
       kids.push(kidData.id); // Replace "id" with the actual field name containing the kid's ID
     });
 
     // Set the elder data directly in the user's document
-    await setDoc(userDocRef, { days: days, kids: kids });
+    await setDoc(userDocRef, { day: day, match: kids[0] });
+
+    const kidRef = doc(firestore, "userCollection", kids[0]);
+    await updateDoc(kidRef, { match: getID() });
 
     console.log("Elder document updated with kids");
   } catch (error) {
@@ -176,7 +202,7 @@ export async function updateKid(day, hour) {
 
 
 //////////////////////////////////
-export async function updatePointsBy100() {
+export async function updatePoints(num) {
   const userDocRef = doc(firestore, 'userCollection', getID());
 
   try {
@@ -188,7 +214,7 @@ export async function updatePointsBy100() {
     const currentPoints = userData && userData.points ? userData.points : 0;
 
     // Calculate the new points value by adding 100
-    const newPointsValue = currentPoints + 100;
+    const newPointsValue = currentPoints + num;
 
     // Update the "points" field in the user's document
     await updateDoc(userDocRef, {points: newPointsValue});

@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import styles from "./page.module.css";
 import Navbar from "../Navbar";
-import { addKidToFirestore, isKid } from "../firebase";
+import { updateElderSchedule, isKid, updateKid, updatePoints} from "../firebase";
 
 export default function Home() {
   const [day, setDay] = useState(-1);
@@ -26,11 +26,22 @@ export default function Home() {
   ];
   const isKiddo = isKid();
 
-  // submits two numbers, day ranges 1-7, and time ranges 9-21 for 9AM to 9PM
-  const handleSubmit = () => {
-    // Call the function to add the kid to Firestore with the selected day and time
-    console.log("submitting ", day, time);
-    addKidToFirestore(day, time);
+  const handleSubmit = async () => {
+    try {
+      // Use await when calling the async function
+      console.log("submitting ", day, time);
+      if(isKiddo)
+      {
+        await updateKid(day, time);
+        await updatePoints(20);
+      }
+      else
+      {
+        await updateElderSchedule(day);
+      }
+    } catch (error) {
+      console.error("Error submitting:", error);
+    }
   };
 
   return (
@@ -77,11 +88,11 @@ export default function Home() {
           </div>
         )}
 
-        {/* Use handleSubmit function as the onClick handler for the submit button */}
+        {/* Use the async function handleSubmit as the onClick handler for the submit button */}
         <button
           onClick={handleSubmit}
           className={styles.button}
-          disabled={!(day != -1 && ((isKid && time != -1) || !isKid))}
+          disabled={!(day !== -1 && ((isKid && time !== -1) || !isKid))}
         >
           Submit
         </button>

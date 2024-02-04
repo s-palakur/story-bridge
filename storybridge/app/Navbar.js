@@ -1,11 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import Link from "next/link";
-import { isKid } from "./firebase";
+import { isKid, getPoints } from "./firebase";
 
 export default function Navbar({ pageName = "Home" }) {
-  // Determine if the current user is a kid
-  const kid = isKid(); // Example boolean function isKid
+  const [isKidUser, setIsKidUser] = useState(true);
+  const [points, setPoints] = useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      // Fetch user type when the component mounts
+      const userIsKid = await isKid();
+      setIsKidUser(userIsKid);
+
+      // Fetch points if the user is a kid
+      if (userIsKid) {
+        const userPoints = await getPoints();
+        setPoints(userPoints);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Function to determine the style of a link
   const getLinkStyle = (linkName) => {
@@ -26,13 +42,24 @@ export default function Navbar({ pageName = "Home" }) {
           <h1 style={getLinkStyle("scheduling")}>Schedule Session</h1>
         </Link>
         <Link href="/shop">
-          {kid && <h1 style={getLinkStyle("shop")}>Shop</h1>}
+          {isKidUser && <h1 style={getLinkStyle("shop")}>Shop</h1>}
         </Link>
       </div>
       <div className={styles.right}>
-        {kid && <img src="/coin.svg" alt="coin" width="50" />}
+      {isKidUser && <img src="/coin.svg" alt="coin" width="50" />}
+      {isKidUser && points !== null && <div>{points}</div>}
         <img src="/profile.svg" alt="profile" width="50" />
+        <h1 style={getLinkStyle("sign out")} onClick={() => logOut()}>
+          Sign Out
+        </h1>
       </div>
     </div>
   );
 }
+
+
+
+
+
+
+
