@@ -42,12 +42,10 @@
     margin-top: 2rem;
     color: black;
     width: 10rem;
-height: 3rem;
-flex-shrink: 0;
-border-radius: 0.7rem;
-box-shadow: 2.033px 2.033px 10.063px 0px rgba(0, 0, 0, 0.1);
-
-
+    height: 3rem;
+    flex-shrink: 0;
+    border-radius: 0.7rem;
+    box-shadow: 2.033px 2.033px 10.063px 0px rgba(0, 0, 0, 0.1);
     display: inline-block;
     font-size: 1rem;
     cursor: pointer;
